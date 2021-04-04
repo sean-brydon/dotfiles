@@ -13,12 +13,16 @@ packer.startup(function()
   use 'sainnhe/edge'
   use {'prettier/vim-prettier', run = 'yarn install' }
   use 'tpope/vim-surround'
+  -- LSP
   use 'neovim/nvim-lspconfig'
   use 'nvim-lua/completion-nvim'
   use 'voldikss/vim-floaterm'
   use 'SirVer/ultisnips'
+  --use 'hrsh7th/vim-vsnip'
   use 'honza/vim-snippets'
   use 'kabouzeid/nvim-lspinstall'
+  use 'glepnir/lspsaga.nvim'
+  -- Telescope
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/telescope.nvim'
@@ -33,7 +37,22 @@ packer.startup(function()
   }
   use 'tpope/vim-commentary'
   use 'unblevable/quick-scope'
-  use 'hrsh7th/vim-vsnip'
   end
 )
+
+-- Starting LSP server
+local function setup_servers()
+  require'lspinstall'.setup()
+  local servers = require'lspinstall'.installed_servers()
+  for _, server in pairs(servers) do
+    require'lspconfig'[server].setup{}
+  end
+end
+
+setup_servers()
+
+require'lspinstall'.post_install_hook = function ()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
 

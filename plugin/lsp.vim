@@ -1,8 +1,3 @@
-"""noremap <silent><expr> <C-Space> compe#complete()
-"""inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-"""inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-"""inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4  })
-"""inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4  })
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
@@ -16,5 +11,16 @@ noremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 let g:completion_enable_snippet = 'UltiSnips'
+
+let g:completion_matching_smart_case = 1
+
+nnoremap <silent><leader>ca :Lspsaga code_action<CR>
+vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
+
+nnoremap <silent> <C-p> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+nnoremap <silent> <C-n> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
+nnoremap <silent> <leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>
+noremap <silent> <leader>gd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
 
 
