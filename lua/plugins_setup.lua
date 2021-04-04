@@ -14,8 +14,8 @@ packer.startup(function()
   use {'prettier/vim-prettier', run = 'yarn install' }
   use 'tpope/vim-surround'
   use 'neovim/nvim-lspconfig'
---  use 'hrsh7th/nvim-compe'
   use 'nvim-lua/completion-nvim'
+  use 'voldikss/vim-floaterm'
   use 'SirVer/ultisnips'
   use 'honza/vim-snippets'
   use 'kabouzeid/nvim-lspinstall'
