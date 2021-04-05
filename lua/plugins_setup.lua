@@ -18,6 +18,7 @@ packer.startup(function()
   use 'nvim-lua/completion-nvim'
   use 'voldikss/vim-floaterm'
   use 'SirVer/ultisnips'
+  use 'alvan/vim-closetag'
   --use 'hrsh7th/vim-vsnip'
   use 'honza/vim-snippets'
   use 'kabouzeid/nvim-lspinstall'
